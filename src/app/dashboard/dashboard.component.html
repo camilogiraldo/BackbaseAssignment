@@ -1,1 +1,15 @@
-
+<p>Dasboard</p>
+<div *ngIf="response">
+  <app-temp-toggler (unitSelected)="unitSelected($event)"></app-temp-toggler>
+  <ul *ngFor=" let city of response ">
+    <li>
+      <a [routerLink]="[ '/detail/', city.id] ">
+        {{ city.name }}
+      </a>
+      <p>Temp: {{ city.main.temp }}</p>
+      <p>Min: {{ city.main.temp_min }}</p>
+      <p>Max: {{ city.main.temp_max }}</p>
+      <p>Wind: {{ city.wind.deg }} deg, {{city.wind.speed}} mp/h </p>
+    </li>
+  </ul>
+</div>
