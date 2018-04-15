@@ -1,0 +1,8 @@
+<mat-button-toggle-group #group="matButtonToggleGroup" (change)="tempUnitChanged($event)" [value]="unitsUsed">
+  <mat-button-toggle value="fahrenheit">
+    <mat-icon>F</mat-icon>
+  </mat-button-toggle>
+  <mat-button-toggle value="celsius">
+    <mat-icon>C</mat-icon>
+  </mat-button-toggle>
+</mat-button-toggle-group>
