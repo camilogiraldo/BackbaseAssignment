@@ -1,4 +1,4 @@
-import { WeatherApiService } from './../../weather-api.service';
+import { WeatherApiService } from './../../shared/services/weather-api.service';
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
