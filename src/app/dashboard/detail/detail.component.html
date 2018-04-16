@@ -1,16 +1,33 @@
-<div *ngIf="!cityLoaded">
-  <app-loading-spinner></app-loading-spinner>
-</div>
-
-<div *ngIf="cityLoaded">
-  <app-temp-toggler (unitSelected)="unitSelected($event)"></app-temp-toggler>
-  <h1> Forecast in {{cityName}} in the next 12 hours</h1>
-  <ul *ngFor="let forecastDetail of forecast">
-    <li> {{ forecastDetail.dt_txt | date:'medium' }}
-      <p>Temp: {{ forecastDetail.main.temp}}</p>
-      <p>Min: {{ forecastDetail.main.temp_min}}</p>
-      <p>Max: {{ forecastDetail.main.temp_max}}</p>
-      <p>Wind: {{ forecastDetail.wind.deg}} deg, {{forecastDetail.wind.speed}} mp/h</p>
-    </li>
-  </ul>
+<app-navigation [toolbarTitle]="dasboardTitle" [goBack]="true"></app-navigation>
+<div class="container">
+  <app-temp-toggler class="toggleAlign" (unitSelected)="unitSelected($event)"></app-temp-toggler>
+  <div *ngIf="!forecast">
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+  <div *ngIf="forecast">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-4" *ngFor="let forecastDetail of forecast.list" [@entraceAnimation]="entraceAnimation">
+          <mat-card class="cardAlign">
+            <mat-card-title class="centerAlign">
+              <h3>
+                {{ forecastDetail.dt_txt | date:'MMM d, h:mm a' }}
+              </h3>
+            </mat-card-title>
+            <div class="imageAlign" *ngFor="let image of forecastDetail.weather">
+              <img src="http://openweathermap.org/img/w/{{image.icon}}.png" alt="" />
+              <p>{{image.description}}</p>
+            </div>
+            <div class="centerAlign">
+              <span class="minWeather"> {{forecastDetail.main.temp_min}}º</span>
+              <span class="maxWeather"> {{forecastDetail.main.temp_max}}º</span>
+              <mat-card-footer class="cardFooter">
+                Wind: {{ forecastDetail.wind.deg}} deg, {{forecastDetail.wind.speed}} {{tempUnitUsed === 'fahrenheit' ? 'mph' : 'km/h'}}
+              </mat-card-footer>
+            </div>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

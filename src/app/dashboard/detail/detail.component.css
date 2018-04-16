@@ -1,0 +1,23 @@
+.toggleAlign {
+  float: right;
+}
+
+.imageAlign {
+  text-align: center;
+}
+
+.cardAlign {
+  margin-top: 5px;
+}
+
+.centerAlign {
+  text-align: center;
+}
+
+.minWeather {
+  color: gray;
+}
+
+.cardFooter {
+  padding-bottom: 10px !important;
+}
